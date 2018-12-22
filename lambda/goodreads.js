@@ -55,7 +55,7 @@ exports.listBooksInShelf = (userID, shelf='read', sort='date_updated') =>
       .then(data => {
         console.log('Parsing XML to JSON');
         const jsonData = parser.toJson(data, { object: true });
-        resolve(jsonData.GoodreadsResponse)
+        resolve(jsonData.GoodreadsResponse.reviews.review)
       })
       .catch(err => reject(err));
   })
