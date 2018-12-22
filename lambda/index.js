@@ -18,27 +18,27 @@ exports.handler = (event) =>
                 console.log(`Read books saved to S3: ${S3_BUCKET}:${S3_KEY}`);
                 resolve({
                   statusCode: 200,
-                  body: books,
+                  body: JSON.stringify(books),
                 });
               })
               .catch(err => {
                 reject({
                   statusCode: 500,
-                  body: err,
+                  body: JSON.stringify(err),
                 });
               })
 
           } else {
             resolve({
               statusCode: 200,
-              body: books,
+              body: JSON.stringify(books),
             });
           }
         })
         .catch(err => {
           reject({
             statusCode: 500,
-            body: err,
+            body: JSON.stringify(err),
           });
         });
     } else {
