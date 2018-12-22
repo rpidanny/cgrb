@@ -1,5 +1,12 @@
 const lambda = require('./lambda');
 
-lambda.handler()
-  .then(data => console.log(JSON.stringify(data, null, 2)))
-  .catch(err => console.log(err));
+const run = async () => {
+  try {
+    const data = await lambda.handler();
+    console.log(data)
+  } catch(err) {
+    console.log(err);
+  }
+};
+
+run();

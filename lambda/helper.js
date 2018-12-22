@@ -11,7 +11,7 @@ exports.saveToS3 = (bucket, key, body) =>
       Key: key
     };
 
-    s3.putObject(params, function(err, data) {
+    s3.putObject(params, (err, data) => {
       if (err) {
         reject(err);
       } else {
@@ -19,3 +19,19 @@ exports.saveToS3 = (bucket, key, body) =>
       }
     });
   });
+
+exports.handleError = (err, statusCode=500) => {
+  console.log(err);
+  return {
+    statusCode,
+    error: JSON.stringify(err)
+  }
+}
+
+exports.handleSuccess = data => {
+  // console.log(data);
+  return {
+    statusCode: 200,
+    body: JSON.stringify(data),
+  }
+}
