@@ -2,6 +2,8 @@ module.exports = {
   userID: '88517742',
   shelves: [
     'read',
-    'currently-reading'
+    'currently-reading',
+    'favorites',
+    'to-read'
   ]
 }
