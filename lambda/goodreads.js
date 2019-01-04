@@ -39,7 +39,7 @@ exports.getUser = (userID) =>
       .catch(err => reject(err));
   })
 
-exports.listBooksInShelf = (userID, shelf='read', sort='date_updated') =>
+exports.listBooksInShelf = (userID, shelf='read', sort='date_added', per_page=200) =>
   new Promise((resolve, reject) => {
     request({
       method: 'GET',
@@ -49,7 +49,8 @@ exports.listBooksInShelf = (userID, shelf='read', sort='date_updated') =>
         v: '2',
         id: userID,
         shelf,
-        sort
+        sort,
+        per_page
       },
     })
       .then(data => {
