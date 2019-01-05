@@ -5,5 +5,7 @@ module.exports = {
     'currently-reading',
     'favorites',
     'to-read'
-  ]
+  ],
+  gitRepo: 'rpidanny/rpidanny.git',
+  gitDir: '/tmp/cgrb'
 }

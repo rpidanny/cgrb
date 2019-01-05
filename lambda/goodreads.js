@@ -15,7 +15,7 @@ exports.listShelves = (grKey) =>
       }
     })
       .then(data => {
-        console.log('Parsing XML to JSON');
+        console.log('[GR]: Parsing XML to JSON');
         const jsonData = parser.toJson(data, { object: true });
         resolve(jsonData.GoodreadsResponse)
       })
@@ -32,7 +32,7 @@ exports.getUser = (userID) =>
       }
     })
       .then(data => {
-        console.log('Parsing XML to JSON');
+        console.log('[GR]: Parsing XML to JSON');
         const jsonData = parser.toJson(data, { object: true });
         resolve(jsonData.GoodreadsResponse)
       })
@@ -54,7 +54,7 @@ exports.listBooksInShelf = (userID, shelf='read', sort='date_added', per_page=20
       },
     })
       .then(data => {
-        console.log('Parsing XML to JSON');
+        console.log('[GR]: Parsing XML to JSON');
         const jsonData = parser.toJson(data, { object: true });
         resolve(jsonData.GoodreadsResponse.reviews.review)
       })

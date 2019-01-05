@@ -35,3 +35,26 @@ exports.handleSuccess = data => {
     body: JSON.stringify(data),
   }
 }
+
+exports.pushToGithub = (git, repo, key) =>
+  new Promise((resolve, reject) => {
+    const repoURL = `https://${key}@github.com/${repo}`
+    // console.log(git(path).init())
+    git
+      .init()
+      .then(() => git.addConfig('user.name', 'rpidanny'))
+      .then(() => git.addConfig('user.email', 'abhishekmaharjan1993@gmail.com'))
+      .then(() => git.addRemote('origin', repoURL))
+      .then(() => git.pull('origin', 'master'))
+      .then(() => git.add('./src/data/'))
+      .then(() => git.commit('Update Books'))
+      .then(() => git.push('origin', 'master'))
+      .then(() => {
+        console.log(`[GIT]: ${repo} updated`)
+        resolve({
+          success: true
+        })
+      })
+      .catch(err => reject(err))
+      
+  })
