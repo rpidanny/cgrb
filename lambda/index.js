@@ -27,7 +27,7 @@ exports.handler = (event, context) =>
               if (ENV && ENV === 'prod') {
                 // Save books to S3
                 console.log(`[S3]: Saving ${shelf} books list to S3(${S3_KEY})`);
-                return saveToS3(S3_BUCKET, S3_KEY, JSON.stringify(books, null, 2));
+                saveToS3(S3_BUCKET, S3_KEY, JSON.stringify(books, null, 2));
               }
               // save locally
               return fs.ensureDir(`${tempDir}/books/shelf`)

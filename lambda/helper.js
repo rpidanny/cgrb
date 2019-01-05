@@ -49,7 +49,7 @@ exports.pushToGithub = (git, repo, key, path) =>
       .then(() => git.addRemote('origin', repoURL))
       .then(() => git.pull('origin', 'master'))
       // .then(() => fs.remove(`${path}/src/data/books`))
-      .then(() => fs.copy(`${tempDir}/books`, `${path}/src/books`))
+      .then(() => fs.copy(`${tempDir}/books/shelf`, `${path}/src/data/books`))
       .then(() => git.add('./src/data/'))
       .then(() => git.commit('[AWS:Lambda] Update Books'))
       .then(() => git.push('origin', 'master'))
