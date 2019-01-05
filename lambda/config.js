@@ -7,5 +7,5 @@ module.exports = {
     'to-read'
   ],
   gitRepo: 'rpidanny/rpidanny.git',
-  gitDir: '/tmp/cgrb'
+  tempDir: '/tmp/cgrb'
 }

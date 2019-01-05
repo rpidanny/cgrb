@@ -1,3 +1,5 @@
+const fs = require('fs-extra')
+const { tempDir } = require('./config')
 
 exports.saveToS3 = (bucket, key, body) =>
   new Promise((resolve, reject) => {
@@ -36,7 +38,7 @@ exports.handleSuccess = data => {
   }
 }
 
-exports.pushToGithub = (git, repo, key) =>
+exports.pushToGithub = (git, repo, key, path) =>
   new Promise((resolve, reject) => {
     const repoURL = `https://${key}@github.com/${repo}`
     // console.log(git(path).init())
@@ -46,6 +48,8 @@ exports.pushToGithub = (git, repo, key) =>
       .then(() => git.addConfig('user.email', 'abhishekmaharjan1993@gmail.com'))
       .then(() => git.addRemote('origin', repoURL))
       .then(() => git.pull('origin', 'master'))
+      // .then(() => fs.remove(`${path}/src/data/books`))
+      .then(() => fs.copy(`${tempDir}/books`, `${path}/src/books`))
       .then(() => git.add('./src/data/'))
       .then(() => git.commit('[AWS:Lambda] Update Books'))
       .then(() => git.push('origin', 'master'))

@@ -1,10 +1,11 @@
 const fs = require('fs-extra')
+const gitP = require('simple-git/promise')
 
 const goodReads = require('./goodreads');
-const { userID, shelves, gitRepo, gitDir } = require('./config');
+const { userID, shelves, gitRepo, tempDir } = require('./config');
 const { saveToS3, handleError, handleSuccess, pushToGithub } = require('./helper');
 
-const git = require('simple-git/promise')(gitDir);
+const gitDir = `${tempDir}/git`
 
 exports.handler = (event, context) =>
   new Promise((resolve, reject) => {
@@ -29,8 +30,8 @@ exports.handler = (event, context) =>
                 return saveToS3(S3_BUCKET, S3_KEY, JSON.stringify(books, null, 2));
               }
               // save locally
-              return fs.ensureDir(`${gitDir}/src/data/books/shelf`)
-                .then(() => fs.writeJSON(`${gitDir}/src/data/books/${S3_KEY}`, books))
+              return fs.ensureDir(`${tempDir}/books/shelf`)
+                .then(() => fs.writeJSON(`${tempDir}/books/${S3_KEY}`, books))
             })
             .then(data => {
               console.log(`[S3]: ${S3_KEY} Saved`);
@@ -45,9 +46,11 @@ exports.handler = (event, context) =>
       );
 
       cache
+        .then(() => fs.ensureDir(gitDir))
         .then(data => {
           // push data to github repo
           if (GH_KEY) {
+            const git = gitP(gitDir);
             return pushToGithub(git, gitRepo, GH_KEY, gitDir)
           }
           throw {
