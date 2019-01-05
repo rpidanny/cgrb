@@ -31,7 +31,7 @@ exports.handler = (event, context) =>
               }
               // save locally
               return fs.ensureDir(`${tempDir}/books/shelf`)
-                .then(() => fs.writeJSON(`${tempDir}/books/${S3_KEY}`, books))
+                .then(() => fs.writeFile(`${tempDir}/books/${S3_KEY}`, JSON.stringify(books, null, 2)))
             })
             .then(data => {
               console.log(`[S3]: ${S3_KEY} Saved`);
