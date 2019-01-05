@@ -47,7 +47,7 @@ exports.pushToGithub = (git, repo, key) =>
       .then(() => git.addRemote('origin', repoURL))
       .then(() => git.pull('origin', 'master'))
       .then(() => git.add('./src/data/'))
-      .then(() => git.commit('Update Books'))
+      .then(() => git.commit('[AWS:Lambda] Update Books'))
       .then(() => git.push('origin', 'master'))
       .then(() => {
         console.log(`[GIT]: ${repo} updated`)
