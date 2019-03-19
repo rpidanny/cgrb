@@ -23,7 +23,7 @@ exports.handler = (event, context) =>
                 return {
                   ...book.book 
                 }
-              });
+              }).sort((a, b) => (a.title > b.title) ? 1 : -1 );
               // if (ENV && ENV === 'prod') {
               //   // Save books to S3
               //   console.log(`[S3]: Saving ${shelf} books list to S3(${S3_KEY})`);
