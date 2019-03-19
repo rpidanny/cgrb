@@ -17,7 +17,7 @@ exports.handler = (event, context) =>
           const { S3_BUCKET} = process.env;
           const S3_KEY = `shelf/${shelf}.json`;
           return goodReads
-            .listBooksInShelf(userID, shelf)
+            .listBooksInShelf(userID, shelf, 'title')
             .then(list => {
               const books = list.map(book => {
                 return {
