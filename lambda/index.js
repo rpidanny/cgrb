@@ -21,7 +21,15 @@ exports.handler = (event, context) =>
             .then(list => {
               const books = list.map(book => {
                 return {
-                  ...book.book 
+                  // ...book.book 
+                  url: book.url,
+                  link: book.link,
+                  title: book.title,
+                  title_without_series: book.title_without_series,
+                  small_image_url: book.small_image_url,
+                  description: book.description,
+                  num_pages: book.num_pages,
+                  average_rating: book.average_rating
                 }
               }).sort((a, b) => (a.title > b.title) ? 1 : -1 );
               // if (ENV && ENV === 'prod') {
