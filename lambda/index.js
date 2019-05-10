@@ -22,14 +22,14 @@ exports.handler = (event, context) =>
               const books = list.map(book => {
                 return {
                   // ...book.book 
-                  url: book.url,
-                  link: book.link,
-                  title: book.title,
-                  title_without_series: book.title_without_series,
-                  small_image_url: book.small_image_url,
-                  description: book.description,
-                  num_pages: book.num_pages,
-                  average_rating: book.average_rating
+                  url: book.book.url,
+                  link: book.book.link,
+                  title: book.book.title,
+                  title_without_series: book.book.title_without_series,
+                  small_image_url: book.book.small_image_url,
+                  description: book.book.description,
+                  num_pages: book.book.num_pages,
+                  average_rating: book.book.average_rating
                 }
               }).sort((a, b) => (a.title > b.title) ? 1 : -1 );
               // if (ENV && ENV === 'prod') {
