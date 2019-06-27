@@ -1,1 +1,1 @@
-aws lambda invoke --function-name cache-read-books outfile.awslog
+aws lambda invoke --function-name cache-read-books outfile.awslog --profile us-east-1

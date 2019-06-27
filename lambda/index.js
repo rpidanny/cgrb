@@ -27,6 +27,7 @@ exports.handler = (event, context) =>
                   title: book.book.title,
                   title_without_series: book.book.title_without_series,
                   small_image_url: book.book.small_image_url,
+                  image_url: book.book.image_url,
                   description: book.book.description,
                   num_pages: book.book.num_pages
                   // average_rating: book.book.average_rating
