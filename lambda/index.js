@@ -33,7 +33,9 @@ exports.handler = (event, context) =>
                   authors: book.book.authors,
                   average_rating: book.book.average_rating,
                   ratings_count: book.book.ratings_count,
-                  publication_day: book.book.publication_day
+                  publication_day: book.book.publication_day,
+                  publication_month: book.book.publication_month,
+                  publication_year: book.book.publication_year
                   // average_rating: book.book.average_rating
                 }
               }).sort((a, b) => (a.title > b.title) ? 1 : -1 );
