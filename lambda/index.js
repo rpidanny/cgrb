@@ -29,7 +29,11 @@ exports.handler = (event, context) =>
                   small_image_url: book.book.small_image_url,
                   image_url: book.book.image_url,
                   description: book.book.description,
-                  num_pages: book.book.num_pages
+                  num_pages: book.book.num_pages,
+                  authors: book.book.authors,
+                  average_rating: book.book.average_rating,
+                  ratings_count: book.book.ratings_count,
+                  publication_day: book.book.publication_day
                   // average_rating: book.book.average_rating
                 }
               }).sort((a, b) => (a.title > b.title) ? 1 : -1 );
